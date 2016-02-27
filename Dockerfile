@@ -4,6 +4,8 @@ MAINTAINER Dmitrii Zolotov <dzolotov@herzen.spb.ru>
 # Install packages
 
 ENV DEBIAN_FRONTEND noninteractive
+
+ADD sources.list /etc/apt/
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install -y nginx php5-fpm php5-gd php5-pgsql git python-setuptools zendframework sudo postgresql-client mc libwrap0 && \
