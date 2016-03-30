@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+  postgrestest:
+     image: postgres
+     environment:
+       POSTGRES_USER: postgres
+       POSTGRES_PASSWORD: postgres
+       POSTGRES_DB: bacula
+  director:
+     image: itherz/bacula-director
+     environment:
+       DB_TYPE: postgresql
+       DB_HOST: postgrestest
+       DB_USER: postgres
+       DB_PASS: postgrs
+       SMTP_HOST: localhost
+       ADMIN_EMAIL: admin@local
+     depends_on:
+       - 'postgrestest'
+     links:
+       - 'postgrestest:postgrestest'
+  webacula:
+#    image: itherz/phpci
+    build: .
+    environment:
+      PG_DB: bacula
+      PG_USER: postgres
+      PG_PWD: postgres
+      PG_HOST: postgrestest
+      DIR_HOST: director
+      DIR_NAME: bacula-dir
+      DIR_PWD: director
+    depends_on:
+      - postgrestest
+      - director
+    ports:
+      - '5300:80'
+    links:
+      - 'postgrestest:postgrestest'
+      - 'director:director'

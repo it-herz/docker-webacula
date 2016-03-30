@@ -2,15 +2,8 @@
 
 # deb cdrom:[Debian GNU/Linux Jessie-DI-rc1 _Jessie_ - Official RC amd64 NETINST Binary-1 20150109-01:04]/ jessie main
 
-#deb cdrom:[Debian GNU/Linux Jessie-DI-rc1 _Jessie_ - Official RC amd64 NETINST Binary-1 20150109-01:04]/ jessie main
+#deb cdrom:[Debian GNU/Linux Jessie-DI-rc1 _Jessie_ - Official RC amd64 NETINST Binary-1 20150109-01:04]/ sid main
 
-deb http://mirror.mephi.ru/debian/ jessie main
-deb-src http://mirror.mephi.ru/debian/ jessie main
+deb http://mirror.mephi.ru/debian/ sid main contrib
+deb-src http://mirror.mephi.ru/debian/ sid main contrib
 
-# jessie-updates, previously known as 'volatile'
-deb http://mirror.mephi.ru/debian/ jessie-updates main
-deb-src http://mirror.mephi.ru/debian/ jessie-updates main
-
-# jessie-backports, previously on backports.debian.org
-deb http://mirror.mephi.ru/debian/ jessie-backports main
-deb-src http://mirror.mephi.ru/debian/ jessie-backports main

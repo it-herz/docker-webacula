@@ -14,6 +14,9 @@ then
   sed -i "s/DOMAIN/$DOMAIN/g" /usr/share/webacula/application/config.ini
 
   sed -i "s/PG_PWD/$PG_PWD/g" /usr/share/webacula/install/db.conf
+
+  RUN ln -s /usr/share/timezone/$TIMEZONE /etc/localtime && dpkg-reconfigure tzdata
+
   pushd /usr/share/webacula/install/
   RP=`php password-to-hash.php $ROOT_PWD`
   popd
