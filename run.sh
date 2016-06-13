@@ -15,7 +15,7 @@ then
 
   sed -i "s/PG_PWD/$PG_PWD/g" /usr/share/webacula/install/db.conf
 
-  RUN ln -s /usr/share/timezone/$TIMEZONE /etc/localtime && dpkg-reconfigure tzdata
+  ln -s /usr/share/timezone/$TIMEZONE /etc/localtime && dpkg-reconfigure tzdata
 
   pushd /usr/share/webacula/install/
   RP=`php password-to-hash.php $ROOT_PWD`
@@ -23,6 +23,7 @@ then
   sed -i "s~ROOT_PWD~$RP~g" /usr/share/webacula/install/db.conf
 
   sed -i 's/NOW().-.StartTime/NOW() - j.StartTime/g' /usr/share/webacula/application/models/Job.php
+  sed -i "s/'BACULA_VERSION', 14/'BACULA_VERSION', 15/ig" /usr/share/webacula/html/index.php
 
   cd /usr/share/webacula/install/PostgreSql
   ./10_make_tables.sh

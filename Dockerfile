@@ -10,7 +10,8 @@ RUN echo 'deb http://packages.dotdeb.org jessie all' >>/etc/apt/sources.list.d/p
     echo 'deb-src http://packages.dotdeb.org jessie all' >> etc/apt/sources.list.d/php.list && \
     apt-get update && \
     apt-get dist-upgrade -y && \
-    apt-get install --force-yes -y lsof liberror-perl perl nginx php5-common php5-fpm php5-gd php5-pgsql git python-setuptools zendframework sudo postgresql-client mc libwrap0 && \
+    apt-get install --force-yes -y lsof liberror-perl perl nginx php5-common php5-fpm php5-gd php5-pgsql git python-setuptools zendframework sudo postgresql-client mc libwrap0 bacula-console && \
+    mkdir -p /opt/bacula/bin && ln -s /usr/bin/bconsole /opt/bacula/bin/bconsole && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     mkdir /usr/share/webacula && cd /usr/share/webacula && git clone https://github.com/tim4dev/webacula . && \
     rm /usr/share/webacula/install/PostgreSql/* && rm /usr/share/webacula/application/config.ini && rm /usr/share/webacula/install/db.conf && \
@@ -22,7 +23,6 @@ ADD 20_acl_make_tables.sh /usr/share/webacula/install/PostgreSql/
 ADD config.ini /usr/share/webacula/application/
 ADD db.conf /usr/share/webacula/install/
 ADD webacula.conf /etc/nginx/sites-enabled
-ADD bconsole /opt/bacula/bin/
 ADD bconsole.conf /opt/bacula/etc/
 ADD run.sh /
 ADD startFPMWithDockerEnvs.sh /etc/php5/
