@@ -11,7 +11,7 @@ RUN echo 'deb http://packages.dotdeb.org jessie all' >>/etc/apt/sources.list.d/p
     apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install --force-yes -y lsof liberror-perl perl nginx php5-common php5-fpm php5-gd php5-pgsql git python-setuptools zendframework sudo postgresql-client mc libwrap0 bacula-console && \
-    mkdir -p /opt/bacula/bin && ln -s /usr/bin/bconsole /opt/bacula/bin/bconsole && mkdir /opt/bacula/lib && ln -s /usr/lib/libbac* /opt/bacula/lib/ \
+    mkdir -p /opt/bacula/bin && ln -s /usr/bin/bconsole /opt/bacula/bin/bconsole && mkdir /opt/bacula/lib && ln -s /usr/lib/libbac* /opt/bacula/lib/ && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     mkdir /usr/share/webacula && cd /usr/share/webacula && git clone https://github.com/tim4dev/webacula . && \
     rm /usr/share/webacula/install/PostgreSql/* && rm /usr/share/webacula/application/config.ini && rm /usr/share/webacula/install/db.conf && \
