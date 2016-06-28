@@ -28,7 +28,7 @@ ADD run.sh /
 ADD startFPMWithDockerEnvs.sh /etc/php5/
 #ADD lib.tar.gz /opt/bacula/lib
 
-ENV [ "PG_DB bacula", "PG_USER bacula", "PG_PWD bacula", "PG_HOST 127.0.0.1", "ROOT_PWD root", "DIR_HOST 127.0.0.1", "DIR_NAME director", "DIR_PWD director", "DOMAIN example.com", "TIMEZONE GMT" ]
+ENV [ "PG_DB bacula", "PG_USER bacula", "PG_PWD bacula", "PG_HOST postgresql", "PG_PORT 5432", "ROOT_PWD root", "DIR_HOST 127.0.0.1", "DIR_NAME director", "DIR_PWD director", "DOMAIN example.com", "TIMEZONE GMT" ]
 
 # Supervisor Config
 RUN mkdir /var/log/supervisor/ && /usr/bin/easy_install supervisor && /usr/bin/easy_install supervisor-stdout
