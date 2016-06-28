@@ -15,7 +15,7 @@ RUN echo 'deb http://packages.dotdeb.org jessie all' >>/etc/apt/sources.list.d/p
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     mkdir /usr/share/webacula && cd /usr/share/webacula && git clone https://github.com/tim4dev/webacula . && \
     rm /usr/share/webacula/install/PostgreSql/* && rm /usr/share/webacula/application/config.ini && rm /usr/share/webacula/install/db.conf && \
-    chown www-data:www-data -R /usr/share/webacula && chmod 777 -R /usr/share/webacula/data \
+    chown www-data:www-data -R /usr/share/webacula && chmod 777 -R /usr/share/webacula/data && \
     rm -rf /etc/nginx/sites-available/* && rm -rf /etc/nginx/sites-enabled/*
 
 ADD 10_make_tables.sh /usr/share/webacula/install/PostgreSql/
