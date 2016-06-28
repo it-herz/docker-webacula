@@ -9,6 +9,14 @@ do
   NOTCONNECTED=$?
 done
 
+export PGPASSWORD=$PG_PWD
+NOTPRESENT=1
+while [ $NOTPRESENT == 1 ]
+do
+  psql -lqt -h $PG_HOST -U $PG_USER | cut -d \| -f 1 | grep -qw $PG_DB
+  NOTPRESENT=$?
+done
+
 if [ ! -f /initialized ]
 then
   sed -i "s/DIR_NAME/$DIR_NAME/g" /opt/bacula/etc/bconsole.conf
