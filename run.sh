@@ -1,5 +1,14 @@
 #!/bin/bash
 
+NOTCONNECTED=1
+while [ $NOTCONNECTED == 1 ]
+do
+  echo Waiting for database
+  sleep 3
+  nc -z $PG_HOST $PG_PORT
+  NOTCONNECTED=$?
+done
+
 if [ ! -f /initialized ]
 then
   sed -i "s/DIR_NAME/$DIR_NAME/g" /opt/bacula/etc/bconsole.conf

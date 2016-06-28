@@ -3,13 +3,8 @@
 # Script to create webacula tables
 #
 
-.   ../db.conf
-
-
-
-sudo -u postgres psql -q -h $PG_HOST -f - -d $db_name $* <<END-OF-DATA
-
-
+export PGPASSWORD=$PG_PWD
+psql -q -h $PG_HOST -U $PG_USER -f - -d $PG_DB $* <<END-OF-DATA
 
 SET client_min_messages=WARNING;
 
@@ -81,17 +76,17 @@ LANGUAGE 'plpgsql';
 
 -- grants
 
-GRANT all ON webacula_logbook TO ${db_user};
-GRANT all ON webacula_logtype TO ${db_user};
-GRANT all ON webacula_jobdesc TO ${db_user};
-GRANT SELECT, REFERENCES ON webacula_version TO ${db_user};
+GRANT all ON webacula_logbook TO ${PG_USER};
+GRANT all ON webacula_logtype TO ${PG_USER};
+GRANT all ON webacula_jobdesc TO ${PG_USER};
+GRANT SELECT, REFERENCES ON webacula_version TO ${PG_USER};
 
-GRANT SELECT, UPDATE ON webacula_logbook_logid_seq TO ${db_user};
-GRANT SELECT, UPDATE ON webacula_logtype_typeid_seq TO ${db_user};
-GRANT SELECT, UPDATE ON webacula_jobdesc_desc_id_seq TO ${db_user};
+GRANT SELECT, UPDATE ON webacula_logbook_logid_seq TO ${PG_USER};
+GRANT SELECT, UPDATE ON webacula_logtype_typeid_seq TO ${PG_USER};
+GRANT SELECT, UPDATE ON webacula_jobdesc_desc_id_seq TO ${PG_USER};
 
 -- execute access
-GRANT EXECUTE ON FUNCTION webacula_clone_file(vTbl TEXT, vFileId INT, vPathId INT, vFilenameId INT, vLStat TEXT, vMD5 TEXT, visMarked INT, vFileSize INT) TO ${db_user};
+GRANT EXECUTE ON FUNCTION webacula_clone_file(vTbl TEXT, vFileId INT, vPathId INT, vFilenameId INT, vLStat TEXT, vMD5 TEXT, visMarked INT, vFileSize INT) TO ${PG_USER};
 
 END-OF-DATA
 
