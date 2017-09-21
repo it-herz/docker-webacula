@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:jessie
 MAINTAINER Dmitrii Zolotov <dzolotov@herzen.spb.ru>
 
 # Install packages
