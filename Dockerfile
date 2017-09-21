@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Dmitrii Zolotov <dzolotov@herzen.spb.ru>
 
 # Install packages
@@ -6,11 +6,9 @@ MAINTAINER Dmitrii Zolotov <dzolotov@herzen.spb.ru>
 ENV DEBIAN_FRONTEND noninteractive
 
 ADD sources.list /etc/apt/
-RUN echo 'deb http://packages.dotdeb.org jessie all' >>/etc/apt/sources.list.d/php.list && \
-    echo 'deb-src http://packages.dotdeb.org jessie all' >> etc/apt/sources.list.d/php.list && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get dist-upgrade -y && \
-    apt-get install --force-yes -y lsof liberror-perl perl nginx php5-common php5-fpm php5-gd php5-pgsql git python-setuptools zendframework sudo postgresql-client mc libwrap0 bacula-console netcat && \
+    apt-get install --force-yes -y lsof liberror-perl perl nginx php-common php-fpm php-gd php-pgsql git python-setuptools zendframework sudo postgresql-client mc libwrap0 bacula-console netcat && \
     mkdir -p /opt/bacula/bin && ln -s /usr/bin/bconsole /opt/bacula/bin/bconsole && mkdir /opt/bacula/lib && ln -s /usr/lib/libbac* /opt/bacula/lib/ && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     mkdir /usr/share/webacula && cd /usr/share/webacula && git clone https://github.com/tim4dev/webacula . && \
