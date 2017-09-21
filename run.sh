@@ -43,8 +43,13 @@ then
   sed -i "s/'BACULA_VERSION', 14/'BACULA_VERSION', 15/ig" /usr/share/webacula/html/index.php
 
   cd /usr/share/webacula/install/PostgreSql
-  ./10_make_tables.sh
-  ./20_acl_make_tables.sh
+  echo "SELECT table_name FROM information_schema.tables WHERE table_schema='public'" | psql -q -h $PG_HOST -U $PG_USER -f - -d $PG_DB | grep webacula_users
+  if [ $? -ne 0 ]
+  then
+    # если таблица webacula_users не существует - заполнить БД
+    ./10_make_tables.sh
+    ./20_acl_make_tables.sh
+  fi
 
   chmod u+s /opt/bacula/bin/bconsole
   touch /initialized
