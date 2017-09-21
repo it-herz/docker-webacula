@@ -23,7 +23,7 @@ ADD db.conf /usr/share/webacula/install/
 ADD webacula.conf /etc/nginx/sites-enabled
 ADD bconsole.conf /opt/bacula/etc/
 ADD run.sh /
-ADD startFPMWithDockerEnvs.sh /etc/php5/
+ADD startFPMWithDockerEnvs.sh /etc/php/7.0/
 #ADD lib.tar.gz /opt/bacula/lib
 
 ENV [ "PG_DB bacula", "PG_USER bacula", "PG_PWD bacula", "PG_HOST postgresql", "PG_PORT 5432", "ROOT_PWD root", "DIR_HOST 127.0.0.1", "DIR_NAME director", "DIR_PWD director", "DOMAIN example.com", "TIMEZONE GMT" ]
