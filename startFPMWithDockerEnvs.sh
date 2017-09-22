@@ -9,13 +9,13 @@ function setEnvironmentVariable() {
     fi
  
     # Check whether variable already exists
-    if grep -q $1 /etc/php/fpm/pool.d/www.conf; then
+    if grep -q $1 /etc/php/7.0/fpm/pool.d/www.conf; then
         # Reset variable
-        sed -i "s/^env\[$1.*/env[$1] = $2/g" /etc/php/fpm/pool.d/www.conf
+        sed -i "s/^env\[$1.*/env[$1] = $2/g" /etc/php/7.0/fpm/pool.d/www.conf
         echo "Reset variable $1 to $2"
     else
         # Add variable
-        echo "env[$1] = $2" >> /etc/php/fpm/pool.d/www.conf
+        echo "env[$1] = $2" >> /etc/php/7.0/fpm/pool.d/www.conf
         echo "Add variable $1 to $2"
     fi
 }
