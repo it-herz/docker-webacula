@@ -17,6 +17,9 @@ do
   NOTPRESENT=$?
 done
 
+# workaround for php7.0 socket
+mkdir -p /run/php
+
 if [ ! -f /initialized ]
 then
   sed -i "s/DIR_NAME/$DIR_NAME/g" /opt/bacula/etc/bconsole.conf
